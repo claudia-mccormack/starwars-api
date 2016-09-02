@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 namespace :api do
   namespace :v1 do
-    get '/starwars' => 'starwars#index'
+    get '/' => 'starwars#index'
     get '/starwars/:id' => 'starwars#show'
     post '/starwars' => 'starwars#create'
     patch '/starwars/:id' => 'starwars#edit'

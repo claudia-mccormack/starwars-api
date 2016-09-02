@@ -8,14 +8,18 @@ class Api::V2::StarwarsController < ApplicationController
   end
 
   def create
-    @starwar = StarWar.create(
+    @starwar = StarWar.new(
     character: params[:character],
     droid: params[:droid],
     planet: params[:planet],
     vehicle: params[:vehicle],
     quote: params[:quote]
     )
-    render 'show'
+    if @starwar.save
+      render json: {message: "Adventure added successfully!"}
+    else
+      render json: {errors: @starwar.errors.full_messages}, status: 422
+    end
   end
 
   def edit

@@ -1,0 +1,43 @@
+<h1>Star Wars Quote Shuffle!</h1>
+<h2>A long time ago, in a galaxy far, far away...</h2>
+<div ng-app="app">
+  <div ng-controller="swCtrl">
+
+    <h2>{{ message }}</h2>
+    <ul>
+      <li ng-repeat="error in errors">{{ error }}</li>
+    </ul>
+    <h3>{{ starwars.length }}</h3>
+
+    <table style="width:100%">
+      <tr>
+        <th>Character</th>
+        <th>Quote</th>
+      </tr>
+      <tr>
+        <td>Han Solo</td>
+        <td>I have a bad feeling about this</td>
+      </tr>
+    </table>
+    <br><br>
+
+    <button type="button" name="button" ng-click="toggleOrder('quote')">Order by Quote</button>
+    <button type="button" name="button" ng-click="toggleOrder('character')">Order by Character</button>
+
+    <input type="text" placeholder="Quote" ng-model="starwar.quote">
+    <input type="text" placeholder="Character" ng-model="starwar.character">
+    <button type="button" ng-click="addStarwar(starwar)">Add Quote</button>
+    <br>
+
+    <input type="text" ng-model="quoteFilter" placeholder="Quote Search">
+    <input type="text" ng-model="charFilter" placeholder="Character Search">
+    <div ng-repeat="starwar in starwars | filter: {quote: quoteFilter, character: charFilter} | orderBy:orderAttribute:isReverse">
+      <h3>{{ starwar.quote }}</h3>
+      <p>
+        {{ starwar.character }}
+      </p>
+      <button type="button" ng-click="deleteStarwar(starwar)">Delete</button>
+    </div>
+
+  </div>
+</div>
