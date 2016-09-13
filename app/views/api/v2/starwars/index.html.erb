@@ -9,35 +9,50 @@
     </ul>
     <h3>{{ starwars.length }}</h3>
 
-    <table style="width:100%">
-      <tr>
-        <th>Character</th>
-        <th>Quote</th>
-      </tr>
-      <tr>
-        <td>Han Solo</td>
-        <td>I have a bad feeling about this</td>
-      </tr>
-    </table>
-    <br><br>
-
-    <button type="button" name="button" ng-click="toggleOrder('quote')">Order by Quote</button>
-    <button type="button" name="button" ng-click="toggleOrder('character')">Order by Character</button>
 
     <input type="text" placeholder="Quote" ng-model="starwar.quote">
     <input type="text" placeholder="Character" ng-model="starwar.character">
     <button type="button" ng-click="addStarwar(starwar)">Add Quote</button>
-    <br>
-
+      <br>
     <input type="text" ng-model="quoteFilter" placeholder="Quote Search">
     <input type="text" ng-model="charFilter" placeholder="Character Search">
-    <div ng-repeat="starwar in starwars | filter: {quote: quoteFilter, character: charFilter} | orderBy:orderAttribute:isReverse">
+      <!-- <br>
+    <button type="button" name="button" ng-click="toggleOrder('quote')">Order by Quote</button>
+    <button type="button" name="button" ng-click="toggleOrder('character')">Order by Character</button> -->
+      <br><br>
+
+    <table>
+      <style>
+        table, th , td {
+          border: 1px solid black;
+          border-collapse: collapse;
+          padding: 5px;
+          }
+          table tr:nth-child(odd) {
+          background-color: #f1f1f1;
+          }
+          table tr:nth-child(even) {
+          background-color: #ffffff;
+          }
+      </style>
+      <tr>
+        <th ng-click="toggleOrder('character')">Character</th>
+        <th ng-click="toggleOrder('quote')">Quote</th>
+      </tr>
+      <tr ng-repeat="starwar in starwars | filter: {quote: quoteFilter, character: charFilter} | orderBy:orderAttribute:isReverse">
+        <td>{{ starwar.character }}</td>
+        <td>{{ starwar.quote }}</td>
+      </tr>
+    </table>
+    <br><br>
+
+    <!-- <div ng-repeat="starwar in starwars | filter: {quote: quoteFilter, character: charFilter} | orderBy:orderAttribute:isReverse">
       <h3>{{ starwar.quote }}</h3>
       <p>
         {{ starwar.character }}
       </p>
       <button type="button" ng-click="deleteStarwar(starwar)">Delete</button>
-    </div>
+    </div> -->
 
   </div>
 </div>

@@ -1,5 +1,6 @@
 class Api::V2::StarwarsController < ApplicationController
   def index
+    {headers: "Accept" => "application/json", "X-User-Email" => "claudia@example.com", "Authorization" => "Token token=elephant"}
     @starwars = StarWar.all
   end
 
